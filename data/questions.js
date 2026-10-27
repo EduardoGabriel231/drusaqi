@@ -1,3 +1,15 @@
+const VISUALS={
+  v1:{type:'sequence',items:['circle','square','circle','square','?']},
+  v2:{type:'arrows',items:['up','right','down','?']},
+  v3:{type:'shapes',items:['square','triangle','pentagon','circle']},
+  v4:{type:'polygons',items:[3,4,5,'?']},
+  v5:{type:'mirror',left:'arrow-right',right:'arrow-left'},
+  v6:{type:'diagonal',value:2},
+  v7:{type:'cube',value:27},
+  v8:{type:'clock',hour:3,minute:0},
+  v9:{type:'grid',rows:2,cols:3},
+  v10:{type:'cube',value:64}
+};
 module.exports = [
   ['n1','numeros',1,'Qual número completa a sequência: 2, 4, 8, 16, __?',['24','30','32','34'],2,'Cada termo é o dobro do anterior.'],
   ['n2','numeros',1,'Qual número vem a seguir: 5, 8, 11, 14, __?',['16','17','18','19'],1,'A sequência aumenta de 3 em 3.'],
@@ -39,4 +51,4 @@ module.exports = [
   ['r8','verbal',3,'Complete: “Embora estivesse cansado, ele ___ trabalhando.”',['Parou de','Continuou','Esqueceu de','Recusou-se a'],1,'A conjunção “embora” introduz contraste: mesmo cansado, continuou.'],
   ['r9','verbal',3,'Qual par apresenta relação de causa e efeito?',['Chuva : guarda-chuva','Estudo : aprendizagem','Chave : porta','Mapa : viagem'],1,'O estudo pode produzir aprendizagem.'],
   ['r10','verbal',4,'Qual argumento é mais forte para concluir que uma biblioteca ficará cheia à tarde?',['A biblioteca abre à tarde','Em todas as tardes de prova anteriores ela ficou cheia','Algumas pessoas gostam de estudar','A biblioteca tem muitas mesas'],1,'A observação repetida em condições semelhantes é a evidência mais relevante.']
-].map(([id,category,difficulty,prompt,options,answer,explanation])=>({id,category,difficulty,prompt,options,answer,explanation,points:difficulty}));
+].map(([id,category,difficulty,prompt,options,answer,explanation])=>({id,category,difficulty,prompt,options,answer,explanation,points:difficulty,visual:VISUALS[id]||null}));
