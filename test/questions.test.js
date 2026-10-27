@@ -1,0 +1,5 @@
+const test=require('node:test'),assert=require('node:assert/strict');
+const questions=require('../data/questions');
+test('existem exatamente 40 questões, 10 em cada categoria',()=>{assert.equal(questions.length,40);for(const c of ['numeros','visual','logica','verbal'])assert.equal(questions.filter(q=>q.category===c).length,10)});
+test('todas as questões possuem estrutura válida e gabarito verificável',()=>{const ids=new Set;for(const q of questions){assert.ok(!ids.has(q.id));ids.add(q.id);assert.equal(q.options.length,4);assert.ok(q.options.every(x=>typeof x==='string'&&x.trim()));assert.ok(Number.isInteger(q.answer)&&q.answer>=0&&q.answer<4);assert.ok(q.explanation.length>12);assert.ok([1,2,3,4].includes(q.difficulty));assert.equal(q.points,q.difficulty)}});
+test('a pontuação máxima é reprodutível e todas as categorias têm peso',()=>{const max=questions.reduce((n,q)=>n+q.points,0);assert.equal(max,88);for(const c of ['numeros','visual','logica','verbal'])assert.ok(questions.filter(q=>q.category===c).reduce((n,q)=>n+q.points,0)>0)});
